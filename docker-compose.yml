@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  redis_db:
+    image: redis:6.2.6-alpine3.15
+    volumes:
+        - redis_data:/data
+    ports:
+      - "64110:6379"
+
+  mysql_db:
+    image: mysql:8.0.28
+    ports:
+      - "64111:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootsecretpassword
+      - MYSQL_DATABASE=url-db
+      - MYSQL_USER=url-db-user
+      - MYSQL_PASSWORD=url-db-pass
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.1.2
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql_db
+      - PMA_PORT=3306
+      - PMA_ARBITRARY=1
+    depends_on:
+      - mysql_db
+
+
+volumes:
+  mysql_data:
+  redis_data:

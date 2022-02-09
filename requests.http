@@ -1,0 +1,49 @@
+@host=http://localhost:3000
+### signup
+POST {{host}}/auth/signup
+Content-Type: application/json
+
+{
+"name":"Ali",
+"email":"sherafat01@gmail.com",
+"password":"123456"
+}
+
+### signin
+POST {{host}}/auth/signin
+Content-Type: application/json
+
+{
+"email":"sherafat01@gmail.com",
+"password":"123456"
+}
+
+### create a short url
+POST {{host}}/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkFsaSIsImlhdCI6MTY0NDQyOTAzMX0.DZF76PSTd2zwVQgwS6agaXzEKaZYPBQH3X2SwBpQ4Qo
+Content-Type: application/json
+
+{
+    "url":"https://learning.drnext.ir/"
+}
+
+### redirect to full url (test this path in browser to see redicrect action) 
+GET {{host}}/79e504
+
+### update a short url
+PATCH  {{host}}/ca181e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkFsaSIsImlhdCI6MTY0NDQyOTAzMX0.DZF76PSTd2zwVQgwS6agaXzEKaZYPBQH3X2SwBpQ4Qo
+Content-Type: application/json
+
+{
+    "fullPath":"https://learning.drnext.ir/#"
+}
+
+
+### delete a short url
+DELETE {{host}}/ca181e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkFsaSIsImlhdCI6MTY0NDQyOTAzMX0.DZF76PSTd2zwVQgwS6agaXzEKaZYPBQH3X2SwBpQ4Qo
+Content-Type: application/json
+
+{
+}
