@@ -1,5 +1,21 @@
 version: '3.8'
 services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - jwtPrivateKey=secret@jwt$$234
+      - TZ=Asia/Tehran
+      - DEBUG=app:*
+      - NODE_ENV=development
+      - REDIS_CONNECTION=redis://redis_db:6379/0
+      - MYSQL_CONNECTION=mysql://url-db-user:url-db-pass@mysql_db:3306/url-db
+    volumes:
+      - .:/app  
+      - /app/node_modules/
+    command: ./docker-entrypoint.sh
+
   redis_db:
     image: redis:6.2.6-alpine3.15
     volumes:

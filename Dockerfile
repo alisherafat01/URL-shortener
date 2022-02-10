@@ -1,5 +1,5 @@
 FROM node:14.16.0-alpine3.13
-RUN addgroup app && adduser -S -G app app
+RUN addgroup -S app && adduser -S app -G app
 RUN npm install -g sequelize-cli
 USER app
 WORKDIR /app
